@@ -16,6 +16,15 @@ Next, install Flask which is required to run the application.
 pip3 install flask
 ```
 
+Clone the repository to your target board
+```bash
+git clone https://github.com/SolomonGithu/retail-checkout-lines-management-with-Edge-Impulse.git
+```
+
+Navigate to the repository
+```bash
+cd retail-checkout-lines-management-with-Edge-Impulse
+```
 Start the application by running the following command while in the root directory of this repo:
 ``` bash
 python3 app.py
@@ -44,8 +53,10 @@ From left, we have cashier 1, then 2 in the middle and finally cashier 3 at the 
 | 2              | between 206 and 304          |
 | 3              | between 398 and 468          |
 
-Then from the Edge Impulse Python SDK we can check the x values of the found bounding boxes. 
+Then from the Edge Impulse Python SDK we can check the x values of the bounding boxes. 
 
 The idea is that we need to know where our region of interest is with respect to the captured image size. Then from ``runner.classifier`` in [app.py](app.py) we can check where the bounding boxes are and increase the number of people at a queue based on it.
+
+If you are using another footage then you will need to identify the location of the region(s) of interest.
 
 
