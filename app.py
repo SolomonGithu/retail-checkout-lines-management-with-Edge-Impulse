@@ -133,7 +133,7 @@ def main():
                         elif(bb['x']>=420 and bb['x']<=525):
                             customers_numbers["cashier3"] +=1
 
-    
+                """
                 #--------------------------------------------------------------------------
                 # Draw lines for the checkout lines and display cashier numbers
                 #--------------------------------------------------------------------------       
@@ -171,7 +171,8 @@ def main():
                 # Draw Line 6 (far right)
                 cv2.rectangle(img, (525, 50), (525, 620),
                             (0, 255, 0), 4)
-                #--------------------------------------------------------------------------  
+                #--------------------------------------------------------------------------
+                """
 
                 ret, buffer = cv2.imencode('.jpg', img=cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
                 img = buffer.tobytes()
