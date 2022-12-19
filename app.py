@@ -92,23 +92,13 @@ def main():
 
             next_frame = 0 # limit to ~10 fps here
 
+            #print(" ==== Getting classification runner res.. ====")
             for res, img in runner.classifier(0):
                 if (next_frame > now()):
                     time.sleep((next_frame - now()) / 1000)
                 
-                # get dimensions of image
-                dimensions = img.shape
-                # height, width, number of channels in image
-                height = img.shape[0]
-                width = img.shape[1]
-                channels = img.shape[2]
-                
-                print('Image Dimension    : ',dimensions)
-                print('Image Height       : ',height)
-                print('Image Width        : ',width)
-                print('Number of Channels : ',channels)
-
-                # print('classification runner response', res)
+                #print("..printing classification runner response..")
+                #print('classification runner response', res)
                 if "classification" in res["result"].keys():
                     print('Result (%d ms.) ' % (res['timing']['dsp'] + res['timing']['classification']), end='')
                     for label in labels:
@@ -126,11 +116,11 @@ def main():
                         # Determine the number of bounding boxes seen for customers at each cashier
                         #--------------------------------------------------------------------------
                         # change this x values accordingly
-                        if(bb['x']>=12 and bb['x']<=105):
+                        if(bb['x']>=6 and bb['x']<=52):
                             customers_numbers["cashier1"] +=1
-                        elif(bb['x']>=205 and bb['x']<=333):
+                        elif(bb['x']>=102 and bb['x']<=166):
                             customers_numbers["cashier2"] +=1
-                        elif(bb['x']>=420 and bb['x']<=525):
+                        elif(bb['x']>=210 and bb['x']<=262.5):
                             customers_numbers["cashier3"] +=1
 
                 """
@@ -181,8 +171,10 @@ def main():
               
                 next_frame = now() + 100
 
+            print("..completed classifier response..")
         finally:
             if (runner):
+                print("stopping runner..")
                 runner.stop()
 
 
@@ -199,7 +191,16 @@ def video_feed():
 
 @app.route('/get_cashier_customers') # returns customer numbers
 def get_cashier_customers():
-    return jsonify(customers_numbers)
+    global customers_numbers
+    send_customers_numbers = customers_numbers # copy numbers to a new variable
+
+    # reset the customer numbers after sending
+    customers_numbers = {
+    "cashier1":0,
+    "cashier2":0,
+    "cashier3":0,
+    }
+    return jsonify(send_customers_numbers)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000, host='0.0.0.0')
+    app.run(debug=False, port=5000, host='0.0.0.0')

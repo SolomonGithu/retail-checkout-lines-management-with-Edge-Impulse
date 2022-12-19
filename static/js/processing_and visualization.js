@@ -37,9 +37,10 @@ function fetch_customers_count(){ // gets customers number from python
         console.log("cashier1_customers : " + cashier1_customers);
         console.log("cashier2_customers : " + cashier2_customers);
         console.log("cashier3_customers : " + cashier3_customers);
-        console.log("-------------------------------------------------------------");
+        console.log("-------------------------------------------------------------");  
 
         show_customer_counts();
+
       }
     ); 
 }
@@ -73,7 +74,14 @@ function get_checkout_distribution(){ // computes the % distribution of people c
   console.log("cashier3_checkout_percent : " + cashier3_checkout_percent);
   console.log("-------------------------------------------------------------");
 
-  set_border_colors();
+  // check if no bounding boxes are found 
+  if (isNaN(cashier1_checkout_percent) && isNaN(cashier2_checkout_percent) && isNaN(cashier3_checkout_percent)){
+    // display borderes with black color
+    set_default_border_colors();
+  }
+  else{ //set border colors based on count
+    set_border_colors();
+  }
 }
 
 function set_border_colors(){ // sets the border colors wrt the % distribution
@@ -151,10 +159,21 @@ function set_border_colors(){ // sets the border colors wrt the % distribution
   }
   // -----------------------------------------------------------------
  
-  // reset coounts
+  // reset counts
   cashier1_customers = 0; //variables to store No of bounding boxes received from the request
   cashier2_customers = 0;
   cashier3_customers = 0;
+
+  cashier1_checkout_percent = 0; //stores the % distribution of people count at each cashier
+  cashier2_checkout_percent = 0;
+  cashier3_checkout_percent = 0;
+}
+
+function set_default_border_colors(){
+  console.log("setting circle borders to default color")
+  cashier1_border.style.borderColor = "#14151A";
+  cashier2_border.style.borderColor = "#14151A";
+  cashier3_border.style.borderColor = "#14151A";
 }
 
 function foo() {
