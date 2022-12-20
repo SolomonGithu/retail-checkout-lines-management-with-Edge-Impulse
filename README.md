@@ -1,6 +1,6 @@
 ## Monitoring checkout lines in retail with Edge Impulse and Renesas RZ/V2L :camera: :walking: :walking:
 
-![Cover Image](media/cover_image.png)
+![Cover Image](media/cover_image_page.png)
 
 ### Quick start :computer:
 
