@@ -4,7 +4,7 @@
 
 ### Quick start :computer:
 
-You can find the public Edge Impulse project here [Person Detection with Renesas DRP-AI](https://studio.edgeimpulse.com/public/166649/latest)
+You can find the public Edge Impulse project here [Person Detection with Renesas DRP-AI](https://studio.edgeimpulse.com/public/166649/latest). Read up on the project's documentation on [Edge Impulse's page](https://www.edgeimpulse.com/blog/what-are-you-waiting-for) to help you get started on your own creation.
 
 Ensure you have a recent version of Python then install the Edge-Impulse Linux Python SDK : 
 ```
